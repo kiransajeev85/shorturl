@@ -1,0 +1,26 @@
+<%= form_with(model: short, remote: true) do |form| %>
+  <% if short.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(short.errors.count, "error") %> prohibited this short from being saved:</h2>
+
+      <ul>
+        <% short.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :Please_enter_your_URL %>
+    <%= form.text_field :long_url %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit 'SHORTEN' %>
+  </div>
+<% end %>
+
+<div id='short_result' class='short_result'>
+</div>

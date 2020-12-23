@@ -10,13 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_21_140740) do
+ActiveRecord::Schema.define(version: 2020_12_23_075631) do
 
   create_table "shorts", force: :cascade do |t|
     t.string "long_url"
     t.string "short_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "visitor_id"
+    t.index ["visitor_id"], name: "index_shorts_on_visitor_id"
   end
 
+  create_table "visitors", force: :cascade do |t|
+    t.string "location"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "short_id"
+    t.index ["short_id"], name: "index_visitors_on_short_id"
+  end
+
+  add_foreign_key "shorts", "visitors"
 end

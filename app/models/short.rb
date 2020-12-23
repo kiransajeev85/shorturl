@@ -1,6 +1,7 @@
 class Short < ApplicationRecord
 before_create :url_token
 validates :long_url, format: URI::regexp(%w[http https])
+has_many :visitors
 
 
 private

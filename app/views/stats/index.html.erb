@@ -1,0 +1,15 @@
+
+<h1>Analytics</h1>
+
+    <% @shorts.each do |short| %>
+	    <div  style="border:1px solid;">
+		    <div> <b><%= short.long_url %></b> </div>
+		    <div> <%=   request.host_with_port + "/" + short.short_url  %> </div>
+		    <div> <%=    "Total clicks: " + short.visitors.count.to_s  %> </div>
+		    <div> <%=    "Top countries: " + 
+	            short.visitors.group(:location).order('count_id desc').count('id').keys.join(",").to_s  %> </div>
+	    </div>
+    <% end %>
+
+<br>
+

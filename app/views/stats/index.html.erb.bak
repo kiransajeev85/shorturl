@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Analytics</h1>
+
+<table>
+  <tbody>
+    <% @shorts.each do |short| %>
+      <tr>
+        <td style="border:1px solid;"><b><%= short.long_url %></b></td>
+      </tr>
+      <tr>
+        <td style="border:1px solid;"><%=  short.short_url %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

@@ -37,6 +37,7 @@ class ShortsController < ApplicationController
       if @short.save
         format.html { redirect_to @short, notice: 'Short was successfully created.' }
 	@msg = "Here is your short URL #{request.host_with_port}/#{@short.short_url}" 
+
 	format.json { render :show, status: :created }
 	format.js { render 'shorts/short_url', val: @short}
       else
@@ -74,10 +75,13 @@ class ShortsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_short
       @short = Short.find(params[:id])
+
     end
 
     def set_url
       @short = Short.find_by_short_url(params[:id])
+      @visitor = Visitor.new({:location => request.location.country.to_s, :short_id => @short.id})
+      @visitor.save
     end
 
     # Only allow a list of trusted parameters through.
